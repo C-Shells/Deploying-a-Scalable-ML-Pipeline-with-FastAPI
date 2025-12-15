@@ -3,7 +3,7 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.data import process_data
 # TODO: add necessary import - Done!
 from sklearn.ensemble import RandomForestClassifier
-from ml.model import inference, compute_model_metrics
+
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -22,9 +22,14 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # TODO: implement the function - Done!
-    model = RandomForestClassifier(random_state=42)
+    model = RandomForestClassifier(
+        n_estimators=100,
+        max_depth=None,
+        random_state=42
+    )
     model.fit(X_train, y_train)
     return model
+
 
 
 def compute_model_metrics(y, preds):
@@ -137,10 +142,10 @@ def performance_on_categorical_slice(
         data_slice,
         categorical_features=categorical_features,
         label=label,
+        training=False,
         encoder=encoder,
-        lb=lb,
-        label=label
+        lb=lb
     )
-    preds = None # your code here to get prediction on X_slice using the inference function
+    preds = inference(model, X_slice) # your code here to get prediction on X_slice using the inference function (Done!)
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
