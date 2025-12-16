@@ -1,4 +1,4 @@
-import os
+# import os
 
 import pandas as pd
 from fastapi import FastAPI
@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
+
 
 # DO NOT MODIFY
 class Data(BaseModel):
@@ -26,14 +27,16 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-path = "model/encoder.pkl" # TODO: enter the path for the saved encoder (Done!)
+
+path = "model/encoder.pkl"  # TODO: enter the path for the saved encoder (Done!)
 encoder = load_model(path)
 
-path = "model/model.pkl" # TODO: enter the path for the saved model (Done!)
+path = "model/model.pkl"  # TODO: enter the path for the saved model (Done!)
 model = load_model(path)
 
 # TODO: create a RESTful API using FastAPI (Done!)
-app = FastAPI() # your code here (Done!)
+app = FastAPI()  # your code here (Done!)
+
 
 # TODO: create a GET on the root giving a welcome message (Done!)
 @app.get("/")
@@ -75,7 +78,7 @@ async def post_inference(data: Data):
         encoder=encoder,
     )
     _inference = inference(model, data_processed)
-    
+
     return {"result": apply_label(_inference)}
 
-#Testing GitHub Action.  Need something to commit and change.
+# Testing GitHub Action.  Need something to commit and change.

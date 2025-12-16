@@ -41,7 +41,7 @@ X_train, y_train, encoder, lb = process_data(
     label="salary",
     training=True,
     # your code here
-    # use the train dataset 
+    # use the train dataset
     # use training=True
     # do not need to pass encoder and lb as input
     )
@@ -67,16 +67,18 @@ save_model(encoder, encoder_path)
 # load the model
 model = load_model(
     model_path
-) 
+)
 
-# TODO (Done!): use the inference function to run the model inferences on the test dataset.
+# TODO (Done!): use the inference function to run the
+# model inferences on the test dataset.
 preds = inference(model, X_test)
 
 # Calculate and print the metrics
 p, r, fb = compute_model_metrics(y_test, preds)
 print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}")
 
-# TODO (Done!): compute the performance on model slices using the performance_on_categorical_slice function
+# TODO (Done!): compute the performance on model slices using the
+# performance_on_categorical_slice function
 # iterate through the categorical features
 for col in cat_features:
     # iterate through the unique values in one categorical feature
