@@ -77,3 +77,5 @@ async def post_inference(data: Data):
     _inference = inference(model, data_processed)
     
     return {"result": apply_label(_inference)}
+
+#Testing GitHub Action.  Need something to commit and change.
